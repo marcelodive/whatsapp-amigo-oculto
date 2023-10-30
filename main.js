@@ -110,7 +110,7 @@ client.on('message', async msg => {
     }
 });
 
-client.initialize();
+client.initialize(); 
 
 async function wait(min = 10000, max = 15000) {
     const randomDelay = Math.floor(Math.random() * (max - min + 1)) + min;
