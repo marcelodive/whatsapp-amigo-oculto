@@ -1,7 +1,9 @@
-# whatsapp-amigo-oculto
+# Amigo oculto no WhatsApp
 
-1. `npm install`
-2. `node main.js`
-3. Link the WhatsApp account with the QR Code that will appear
-4. Add this user/bot to a group
-5. Send a message "\sortear" to the group to start the draw
+1. Rode `npm install` na raíz do projeto
+2. Inicie o bot com `node main.js`
+3. Conecte o número do WhatsApp que você irá utilizar para o sorteio com o QR Code que irá aparecer
+  3.1. Lembre-se: este número não irá participar do sorteio, ele apenas sorteará os outros números do grupo
+4. Adicione este usuário/bot no grupo desejado
+5. Envie a mensagem "\sortear" no grupo para que o bot possa começar a realizar o sorteio
+6. Remova o bot do grupo quando o sorteio terminar para não ter perigo de outro membro executar o comando novamente
