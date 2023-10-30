@@ -1,4 +1,4 @@
-# Amigo oculto no WhatsApp
+# Sorteio do "amigo oculto" no grupo do WhatsApp
 
 1. Rode `npm install` na raíz do projeto
 2. Inicie o bot com `node main.js`
