@@ -38,7 +38,7 @@ client.on('message', async msg => {
           .sort((a, b) => a.sort - b.sort)
           .map(({
             value
-          }) => value)
+          }) => value);
       } while (!isLastParticipantEqual(participants, toDrawParticipants));
 
       for (const participant of participants) {
@@ -108,11 +108,11 @@ client.on('message', async msg => {
                 
                 
                 
-                ...${drawnParticipant.id.user}`)
+                ...${drawnParticipant.id.user}`); // Necessário para aparecer o "leia mais"
         await wait();
       }
       chat.sendMessage(
-        'Sorteio finalizado! Confira nossa conversa no privado para saber quem você sorteou!')
+        'Sorteio finalizado! Confira nossa conversa no privado para saber quem você sorteou!');
     }
   }
 });
