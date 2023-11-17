@@ -42,9 +42,11 @@ client.on('message', async msg => {
       } while (!isLastParticipantEqual(participants, toDrawParticipants));
 
       for (const participant of participants) {
-        const drawnParticipant = (participant.id._serialized !== toDrawParticipants[0].id._serialized) ?
+        const drawnParticipant = (participant.id._serialized.slice(0,12) !== toDrawParticipants[0].id._serialized.slice(0,12)) ?
           toDrawParticipants.shift() :
           toDrawParticipants.pop();
+
+        console.log(participant.id._serialized, '|', drawnParticipant.id.user)
 
         client.sendMessage(participant.id._serialized, `Você tirou...
                 
@@ -127,5 +129,5 @@ async function wait(min = 10000, max = 15000) {
 }
 
 function isLastParticipantEqual(participantsA, participantsB) {
-  return participantsA.slice(-1).pop().id._serialized === participantsB.slice(-1).pop().id._serialized;
+  return participantsA.slice(-1).pop().id._serialized.slice(0,12) === participantsB.slice(-1).pop().id._serialized.slice(0,12);
 }
