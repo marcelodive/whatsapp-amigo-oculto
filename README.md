@@ -1,3 +1,5 @@
+Esse código eu fiz apenas para facilitar o sorteio no grupo de Whatsapp da minha família, então ele tem algumas decisões meio duvidosas de código e partes que claramente poderiam ser melhores, mas é _temporário_.
+
 # Sorteio do "amigo oculto" no grupo do WhatsApp
 
 1. Rode `npm install` na raíz do projeto
