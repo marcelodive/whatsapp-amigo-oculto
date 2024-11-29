@@ -1,30 +1,23 @@
 const qrcode = require('qrcode-terminal');
-const {
-  Client,
-  LocalAuth
-} = require('whatsapp-web.js');
+const venom = require('venom-bot');
 
-const client = new Client({
-  authStrategy: new LocalAuth()
-});
-
-client.on('qr', qr => {
-  qrcode.generate(qr, {
-    small: true
+venom
+  .create({
+    session: 'session-name-2' //name of session
+  })
+  .then((client) => start(client))
+  .catch((erro) => {
+    console.log(erro);
   });
-});
 
-client.on('ready', () => {
-  console.log('Pronto para receber o comando "\\sortear"');
-});
+function start(client) {
+  client.onMessage(async (msg) => {
+    const groupParticipants = await client.getGroupMembers(msg.chatId);
+    if (msg.body === '\\sortear' && msg.isGroupMsg === true) {
 
-client.on('message', async msg => {
-  if (msg.body == '\\sortear') {
-    const chat = await msg.getChat();
+      client.sendText(msg.chatId, 'Sorteio iniciado! Em breve vocês receberão o seu amigo oculto no privado!')
 
-    if (chat.isGroup) {
-      chat.sendMessage('Sorteio iniciado! Em breve vocês receberão o seu amigo oculto no privado!')
-      const participants = chat.participants.filter((participant) =>
+      const participants = groupParticipants.filter((participant) =>
         participant.id._serialized !== msg.to
       );
 
@@ -48,7 +41,7 @@ client.on('message', async msg => {
 
         console.log(participant.id._serialized, '|', drawnParticipant.id.user)
 
-        client.sendMessage(participant.id._serialized, `Você tirou...
+        client.sendText(participant.id._serialized, `Você tirou...
                 
                 
                 
@@ -110,16 +103,14 @@ client.on('message', async msg => {
                 
                 
                 
-                ...${drawnParticipant.id.user}`); // Necessário para aparecer o "leia mais"
+        ...${drawnParticipant.id.user}`); // Necessário para aparecer o "leia mais"
         await wait();
       }
-      chat.sendMessage(
+      client.sendText(msg.chatId, 
         'Sorteio finalizado! Confira nossa conversa no privado para saber quem você sorteou!');
     }
-  }
-});
-
-client.initialize();
+  });
+}
 
 async function wait(min = 10000, max = 15000) {
   const randomDelay = Math.floor(Math.random() * (max - min + 1)) + min;
